@@ -1,7 +1,7 @@
 import warnings
 import numpy as np
-from sympy import sqrt, ln, pi, exp, sp
-
+import sympy as sympy
+from sympy import sqrt, ln, pi, exp
 
 class UnivariateGaussianVariationalModel:
     def __init__(self, sigma=1, mu=1):
@@ -23,7 +23,7 @@ class UnivariateGaussianVariationalModel:
     def __gradient_descent_step(
         self, func, partial_var, learning_rate, var_value, data_point
     ):
-        gradient = sp.diff(func, partial_var)
+        gradient = sympy.diff(func, partial_var)
         gradient = gradient.subs({partial_var: var_value, "x": data_point})
         updated_parameter_value = var_value - learning_rate * gradient
         return updated_parameter_value
@@ -32,8 +32,8 @@ class UnivariateGaussianVariationalModel:
         self, x_bold_train, x_bold_val=None, learning_rate=0.01, epochs=100, patience=5
     ):
         parameters = {
-            "mu": sp.symbols("mu", real=True),
-            # "sigma": sp.symbols("sigma", real=True),
+            "mu": sympy.symbols("mu", real=True),
+            # "sigma": sympy.symbols("sigma", real=True),
         }
 
         for param in parameters:
