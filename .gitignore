@@ -4,5 +4,6 @@
 *.pyc
 *.pyo  
 .DS_Store
-\venv/
-\vscode/
+venv/
+vscode/
+*.vscode/
